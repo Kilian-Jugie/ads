@@ -1,8 +1,13 @@
+/*
+ * ads © 2021 by Kilian Jugie is licensed under Attribution 4.0 International.
+ * To view a copy of this license, visit http ://creativecommons.org/licenses/by/4.0/
+ */
+
 #include <cmath>
 #include <iostream>
 #include "ads_maths.h"
 
-#define _TEST_FAILED  std::cerr << "Test number " << __COUNTER__ << " at " << __FILE__ << ":" << __LINE__ << " failed : "
+#define _TEST_FAILED  std::cerr << "Test number " << ADS_COUNTER << " at " << __FILE__ << ":" << __LINE__ << " failed : "
 
 #ifdef _DEBUG
 #include <cassert>

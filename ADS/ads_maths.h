@@ -1,16 +1,25 @@
+/*
+ * ads © 2021 by Kilian Jugie is licensed under Attribution 4.0 International.
+ * To view a copy of this license, visit http ://creativecommons.org/licenses/by/4.0/
+ */
+
+
 #pragma once
+#include "ads_compiler.h"
 
 /**
  * @brief Compute mathematical average of numbers[count]
  * 
- * @note The function is force-inlined to avoid the function
- *    call cost in complexity calculation
+ * @note This function is forced inlined because compiler
+ *  would probably not do it by itself due to loop with
+ *  non-constexpr condition (loop unwinding) and we need
+ *  the "call" to this function to be zero overhead
  * 
  * @param numbers[] The array of numbers to compute
  * @param count The amount of elements in numbers
  * @return The average of numbers
  */
-inline double average(double numbers[], const unsigned count) {
+ADS_FORCEINLINE double average(double numbers[], const unsigned count) {
   double average = numbers[0];
   for(unsigned i = 1; i < count; ++i) {
     average += numbers[i];
