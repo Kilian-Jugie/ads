@@ -15,8 +15,8 @@
 #define TEST_EQ_D(l,r,e) if (r < l-e && r > l+e) { _TEST_FAILED << "expected " << r << " got " << l; assert(0); }
 #else
 #error This code should only be executed without optimizations. Comment this line out to acknowledge the warning
-#define TEST_EQ(l,r) if(l != r) { exit(-__COUNTER__); } 
-#define TEST_EQ_D(l,r,e) if (r < l-e && r > l+e) { exit(-__COUNTER__); } 
+#define TEST_EQ(l,r) if(l != r) { exit(-ADS_COUNTER); } 
+#define TEST_EQ_D(l,r,e) if (r < l-e && r > l+e) { exit(-ADS_COUNTER); } 
 #endif // DEBUG
 
 namespace utils {
