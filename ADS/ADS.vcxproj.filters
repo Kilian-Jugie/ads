@@ -24,9 +24,15 @@
     <ClCompile Include="variance.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ads_compiler.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ads_maths.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ads_compiler.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

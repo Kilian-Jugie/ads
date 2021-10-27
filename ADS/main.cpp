@@ -7,16 +7,26 @@
 #include <iostream>
 #include "ads_maths.h"
 
-#define _TEST_FAILED  std::cerr << "Test number " << ADS_COUNTER << " at " << __FILE__ << ":" << __LINE__ << " failed : "
-
+#define _TEST_PRINT_FAILED 
 #ifdef _DEBUG
+/* TODO: Extract TEST_CMP expr and generalize TEST_EQ(_X) */
 #include <cassert>
-#define TEST_EQ(l,r) if(l != r) { _TEST_FAILED << "expected " << r << " got " << l; assert(0); }
-#define TEST_EQ_D(l,r,e) if (r < l-e && r > l+e) { _TEST_FAILED << "expected " << r << " got " << l; assert(0); }
+#define _EVAL1(...) __VA_ARGS__
+#define _TEST_PRINT_DBG(l,r) std::cerr << "Test number " << ADS_COUNTER << " at " << __FILE__ << ":" << __LINE__ << " failed : " << "expected " << r << " got " << l
+#define _TEST_BLK_DBG(l,r) { _TEST_PRINT_DBG(l,r); _EVAL1(assert(0)); }
+
+#define TEST_EQ_E(l,r,e) if (r < l-e && r > l+e) _TEST_BLK_DBG(l,r)
+
+#define TEST_EQ(l,r) if(l != r) _TEST_BLK_DBG(l,r)
+#define TEST_EQ_D(l,r) TEST_EQ_E(l,r,std::numeric_limits<double>::epsilon())
 #else
 #error This code should only be executed without optimizations. Comment this line out to acknowledge the warning
-#define TEST_EQ(l,r) if(l != r) { exit(-ADS_COUNTER); } 
-#define TEST_EQ_D(l,r,e) if (r < l-e && r > l+e) { exit(-ADS_COUNTER); } 
+
+#define _TEST_BLK_RLS { exit(-ADS_COUNTER); }
+
+#define TEST_EQ(l,r) if(l != r) _TEST_BLK_RLS
+#define TEST_EQ_E(l,r,e) if (r < l-e && r > l+e) _TEST_BLK_RLS
+#define TEST_EQ_D(l,r) TEST_EQ_E(l,r,std::numeric_limits<double>::epsilon())
 #endif // DEBUG
 
 namespace utils {
