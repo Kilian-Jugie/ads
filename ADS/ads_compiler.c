@@ -7,4 +7,7 @@
 
 #ifdef ADS_C_OTHER
 unsigned __ads_counter = 0;
+#else
+// To avoid empty translation unit
+unsigned ____noop____ = 0;
 #endif // !
